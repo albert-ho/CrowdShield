@@ -2,8 +2,8 @@
   "manifest_version": 2,
 
   "name": "Twitter Bert",
-  "description": "Do Bert stuff",
   "version": "0.0.1",
+  "description": "Modified from Karpathy's Twitter Opt",
 
   "permissions": [
     "http://twitter.com/",
@@ -11,23 +11,16 @@
     "storage"
   ],
 
-  "page_action": {
-    "default_title": "Do Bert stuff on Twitter",
-    "default_icon":  "sun.png"
-  },
-
-  "background": {
-    "scripts": "background.js"
-  },
-
   "web_accessible_resources": ["jquery-2.0.3.min.map"],
 
   "content_scripts": [
     {
-      "matches": ["http://twitter.com/*", "https://twitter.com/*"],
-      "js": ["jquery-2.0.3.min.js", "main.js"],
-      "run_at": "document_end",
-      "all_frames": true
+        "matches": ["http://twitter.com/*","https://twitter.com/*"],
+        "js": ["jquery-2.0.3.min.js", "main.js"],
+        "run_at": "document_end",
+        "all_frames": true
     }
-  ]
+  ],
+
+  "icons": "sun.png"
 }
