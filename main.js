@@ -74,7 +74,7 @@ var display_charges = function() {
       var seen_node = $(time_node[0]).find('.toptupc');
       if (seen_node.length == 0) {
        $(time_node).append('<div class="toptupc">' + charge_count + 'f</div>').css('text-align', 'right').hide().fadeIn();
-      }  
+      }
     }
 
     // adjust highlight color of the tweet according to uniqueness
@@ -86,7 +86,7 @@ var display_charges = function() {
 
     // check if user in VIP list and highlight if yes
     if($.inArray(charged_user, VIP) !== -1) {
-      $(it).css('background-color', 'rgb(150,255,150)'); 
+      $(it).css('background-color', 'rgb(150,255,150)');
     }
 
   }
@@ -143,7 +143,7 @@ var process_new_tweets = function() {
   display_charges(); // update DOM according to new charges
 
   // back up the charged tweets in local storage
-  // but not every single time, maybe every time we get at least 
+  // but not every single time, maybe every time we get at least
   // a build up of 10 new tweets
   tweet_count_up += new_tweets;
   if(tweet_count_up > 10) {
@@ -164,7 +164,7 @@ chrome.storage.local.get('charge', function (result) {
   }
 });
 
-// List of VIP users. 
+// List of VIP users.
 // We will highlight all tweets by these users!
 var VIP = ['elonmusk']
 

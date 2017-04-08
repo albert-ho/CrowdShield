@@ -22,5 +22,7 @@
     }
   ],
 
-  "icons": "sun.png"
+  "icons": {
+    "128": "sun.png"
+  }
 }
