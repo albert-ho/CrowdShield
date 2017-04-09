@@ -3,7 +3,7 @@
 A Chrome Extension to filter "crowd harassment" on Twitter. 
 (Defined as: Surge of tweets that harmfully target a specific user within a specific time frame)
 
-Go to chrome://extensions, 
+Go to chrome://extensions, \n
 Check off "Developer mode", 
 Click "Load unpacked extension...",
 Click on twitterbert's "chrome_extension" file and hit "Open",
