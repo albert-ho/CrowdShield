@@ -1,22 +1,16 @@
 {
-  "name": "A Better Place",
+  "name": "Albert's Twitter Filter",
   "version": "0.0.1",
   "manifest_version": 2,
-  "description": "Hides all negative tweets on twitter.com between the hours of 7am and 11am.",
-  "homepage_url": "http://jonty.co.uk/abetterplace",
+  "description": "Filters crowd harassment on specified Twitter user's mentions-feed",
   "background": {
-    "scripts": ["background.js"],
+    "scripts": ["src/background.js"]
   },
-  "content_scripts": [
-    {
-      "matches": [
-        "http://twitter.com/*",
-        "https://twitter.com/*"
-      ],
-      "js": [
-        "src/inject.js"
-      ]
-    }
+  "browser_action": {
+    "default_title": "Filter crowd harassment for specified user"
+  },
+  "permissions": [
+    "https://twitter.com/*"
   ],
-  "web_accessible_resources": ["src/afinn.js", "src/abp.js", "src/run.js"]
+  "web_accessible_resources": ["src/abp.js", "src/afinn.js", "src/run.js", "jquery-2.0.3.min.map"]
 }
