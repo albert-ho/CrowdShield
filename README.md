@@ -8,7 +8,6 @@ A Chrome Extension to filter "crowd harassment" on Twitter.
 Go to chrome://extensions,
 Check off "Developer mode",
 Click "Load unpacked extension...",
-
 Click on twitterbert's "chrome_extension" file and hit "Open",
 
 Refresh the extensions page,
