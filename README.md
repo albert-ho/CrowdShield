@@ -1,7 +1,7 @@
 # twitterbert
 
-A Chrome Extension to filter "crowd harassment" on Twitter. __
-(Defined as: Surge of tweets that harmfully target a specific user within a specific time frame) __
+A Chrome Extension to filter "crowd harassment" on Twitter. <br />
+(Defined as: Surge of tweets that harmfully target a specific user within a specific time frame) <br />
 
 - Go to chrome://extensions,
 - Check off "Developer mode",
@@ -11,5 +11,5 @@ A Chrome Extension to filter "crowd harassment" on Twitter. __
 - Click on the new "A" icon in the top-right of the chrome browser,
 - Follow the prompt commands (entering in user-name, start-time, end-time),
 
-You will be taken to the specified mentions-feed and see how the filter works! __
+You will be taken to the specified mentions-feed and see how the filter works! <br />
 (Currently using filter from Jonty: A Better Place)
