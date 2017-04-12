@@ -10,6 +10,7 @@
     "default_title": "Filter crowd harassment for specified user"
   },
   "permissions": [
+    "http://twitter.com/*",
     "https://twitter.com/*"
   ],
   "web_accessible_resources": ["src/abp.js", "src/afinn.js", "src/run.js", "jquery-2.0.3.min.map"]
