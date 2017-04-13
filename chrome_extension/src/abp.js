@@ -26,10 +26,7 @@ function abp_process_tweets() {
     $('.tweet-text').not('.abp_processed').each(function(i, node) {
         var score = abp_sentiment(node.textContent);
         if (score <= 0) {
-            console.log('Removing: ' + node.textContent + '(Score: ' + score + ')');
             node.parentNode.parentNode.setAttribute('tweet-is-negative', 'true');
-        } else {
-            console.log('Leaving: ' + node.textContent + '(Score: ' + score + ')');
         }
         node.className += ' abp_processed';
     })
