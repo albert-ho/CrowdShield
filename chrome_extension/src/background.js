@@ -10,6 +10,7 @@ chrome.browserAction.onClicked.addListener(function(tab){
   twitterURL = encodeURI(query);
 
   chrome.tabs.create({url: twitterURL}, function(tab) {
-    chrome.tabs.executeScript(tab.id, {file: "src/inject.js"});
+    console.log("loaded!");
+    chrome.tabs.executeScript(tab.id, {file: "src/inject.js", });
   });
 });
