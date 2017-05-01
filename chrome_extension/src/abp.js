@@ -40,6 +40,6 @@ function test_tweets() {
       var id = highLevelTweet.attributes['data-tweet-id'].value;
       var text = node.textContent;
       tweet = {id: id, text: text};
-      alert(tweet.id + ': ' + tweet.text);
+      //alert(tweet.id + ': ' + tweet.text);
   })
 }

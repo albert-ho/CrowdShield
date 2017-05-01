@@ -11,6 +11,7 @@ chrome.browserAction.onClicked.addListener(function(tab){
 
   chrome.tabs.create({url: twitterURL}, function(tab) {
     console.log("loaded!");
+    chrome.tabs.executeScript(tab.id, {file: "src/button.js", runAt: "document_start"});
     chrome.tabs.executeScript(tab.id, {file: "src/inject.js", });
   });
 });
