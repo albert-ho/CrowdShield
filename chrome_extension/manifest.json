@@ -13,5 +13,5 @@
     "http://twitter.com/*",
     "https://twitter.com/*"
   ],
-  "web_accessible_resources": ["src/abp.js", "src/afinn.js", "src/run.js", "src/index.js", "jquery-3.2.1.min.map"]
+  "web_accessible_resources": ["src/button.js", "src/abp.js", "src/afinn.js", "src/run.js", "src/index.js", "jquery-3.2.1.min.map"]
 }

@@ -4,8 +4,8 @@ chrome.extension.sendMessage({}, function(response) {
 		clearInterval(readyStateCheckInterval);
 
 		console.log("INSERTING SCRIPTS");
-		
-	  ['afinn.js', 'abp.js', 'run.js'].map(function(script) {
+
+	  ['button.js', 'afinn.js', 'abp.js', 'run.js'].map(function(script) {
 	      var s = document.createElement('script');
 	      s.src = chrome.extension.getURL('src/' + script);
 	      s.onload = function() {
