@@ -9,9 +9,10 @@ chrome.browserAction.onClicked.addListener(function(tab){
   query += "to:" + user + " since:" + start + " until:" + end;
   twitterURL = encodeURI(query);
 
+  // TODO: Can probably use message passing here with inject.js to pass db_name parameter
   chrome.tabs.create({url: twitterURL}, function(tab) {
     console.log("loaded!");
     //chrome.tabs.executeScript(tab.id, {file: "src/button.js", runAt: "document_end"});
-    chrome.tabs.executeScript(tab.id, {file: "src/inject.js", });
+    chrome.tabs.executeScript(tab.id, {file: "src/inject.js"});
   });
 });
