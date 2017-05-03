@@ -1,3 +1,4 @@
+// TODO: Clean up namespace, remove or keep error + success logs?
 var db;
 var dbName = $('.ProfileCard')[0].attributes['data-screen-name'].value;
 var DBOpenRequest = window.indexedDB.open(dbName, 1);
@@ -5,16 +6,11 @@ DBOpenRequest.onerror = function(event) {
   alert("OH NO, ERROR!");
 };
 DBOpenRequest.onsuccess = function(event) {
-  alert("Opened database, yay!");
   db = DBOpenRequest.result;
 }
 DBOpenRequest.onupgradeneeded = function(event) {
   var db = event.target.result;
-  db.onerror = function(event) {
-    alert("OH NO, ERROR!");
-  };
   var objectStore = db.createObjectStore("tweets", { keyPath: "id" });
-  alert("objectStore created!");
 };
 
 // HACK: To get tweet_data values + db, maybe modularize process later?
@@ -26,21 +22,8 @@ function test_tweet(event) {
   var date = tweet.getElementsByClassName('tweet-timestamp')[0].getAttribute('title');
   var username = tweet.getElementsByClassName('username')[0].getElementsByTagName('b')[0].innerText;
   var tweet_data = {id: id, text: text, date: date, username: username};
-
-  var transaction = db.transaction("tweets", "readwrite");
-  transaction.oncomplete = function(event) {
-    alert("transaction success!");
-  };
-  transaction.onerror = function(event) {
-    alert("transaction error!");
-  };
-  var tweetObjectStore = transaction.objectStore("tweets");
-
-  //var tweetObjectStore = db.transaction("tweets", "readwrite").objectStore("tweets");
-  var objectStoreRequest = tweetObjectStore.add(tweet_data);
-  objectStoreRequest.onsuccess = function(event) {
-    alert("stored tweet, yay!");
-  }
+  var tweetObjectStore = db.transaction("tweets", "readwrite").objectStore("tweets");
+  tweetObjectStore.add(tweet_data);
 }
 
 
