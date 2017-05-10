@@ -13,8 +13,9 @@ DBOpenRequest.onupgradeneeded = function(event) {
   var objectStore = db.createObjectStore("tweets", { keyPath: "id" });
 };
 
+
 // HACK: To get tweet_data values + db, maybe modularize process later?
-function test_tweet(event) {
+function store_tweet(event) {
   var tweet = event.target.closest('.tweet');
   var id = tweet.attributes['data-tweet-id'].value;
   // TODO: Can I get raw HTML with <b> included?
@@ -27,13 +28,30 @@ function test_tweet(event) {
 }
 
 
+// PASS PARAMETER TO EVENTS TO SET "FILTER" VALUE TO
+function mark_bad(event) {
+
+}
+
+
 // TODO: Make sure button is added to new tweets that are loaded onto screen as well
-function button_tweets() {
-  var $li = $('<li>', {"class": "twitterbert-button", "role": "presentation"});
-  var $button = $('<button>', {"class": "dropdown-link", "type": "button", "role": "menuitem", "text": "TESTING123"});
+function tweet_buttons() {
+
+  var $li_abusive = $('<li>', {"class": "button-abusive", "role": "presentation"});
+  var $button_abusive = $('<button>', {"class": "dropdown-link", "type": "button", "role": "menuitem", "text": "Mark Tweet Abusive"});
+  $li_abusive.append($button_abusive);
+
+  var $li_benign = $('<li>', {"class": "button-benign", "role": "presentation"});
+  var $button_benign = $('<button>', {"class": "dropdown-link", "type": "button", "role": "menuitem", "text": "Mark Tweet Benign"});
+  $li_benign.append($button_benign);
+
   var $ul = $('.ProfileTweet-action > .dropdown > .dropdown-menu > ul');
-  $li.append($button);
-  $ul.prepend($li);
-  var $twitterbert_button = $('.twitterbert-button');
-  $twitterbert_button.click(test_tweet);
+  $ul.prepend($li_abusive);
+  $ul.prepend($li_benign);
+
+  var $abusive = $('.button-abusive');
+  $abusive.click(store_tweet);
+
+  var $benign = $('.button-benign')
+  $benign.click(store_tweet);
 }
