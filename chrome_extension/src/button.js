@@ -16,21 +16,16 @@ DBOpenRequest.onupgradeneeded = function(event) {
 
 // HACK: To get tweet_data values + db, maybe modularize process later?
 function store_tweet(event) {
+  var abusive = event.data.abusive
   var tweet = event.target.closest('.tweet');
   var id = tweet.attributes['data-tweet-id'].value;
   // TODO: Can I get raw HTML with <b> included?
   var text = tweet.getElementsByClassName('tweet-text')[0].textContent;
   var date = tweet.getElementsByClassName('tweet-timestamp')[0].getAttribute('title');
   var username = tweet.getElementsByClassName('username')[0].getElementsByTagName('b')[0].innerText;
-  var tweet_data = {id: id, text: text, date: date, username: username};
+  var tweet_data = {id: id, text: text, date: date, username: username, abusive: abusive};
   var tweetObjectStore = db.transaction("tweets", "readwrite").objectStore("tweets");
-  tweetObjectStore.add(tweet_data);
-}
-
-
-// PASS PARAMETER TO EVENTS TO SET "FILTER" VALUE TO
-function mark_bad(event) {
-
+  tweetObjectStore.put(tweet_data, id);
 }
 
 
@@ -50,8 +45,8 @@ function tweet_buttons() {
   $ul.prepend($li_benign);
 
   var $abusive = $('.button-abusive');
-  $abusive.click(store_tweet);
+  $abusive.click({abusive: 1}, store_tweet);
 
   var $benign = $('.button-benign')
-  $benign.click(store_tweet);
+  $benign.click({abusive: 0}, store_tweet);
 }
