@@ -8,7 +8,7 @@ var db_holder = function() {
   }
   DBOpenRequest.onupgradeneeded = function(event) {
     var db = event.target.result;
-    var objectStore = db.createObjectStore("tweets", { keyPath: "id" });
+    db.createObjectStore("tweets", { keyPath: "id" }); //TODO: Possibly add object store reference here
   };
   return db_holder;
 }();
@@ -34,8 +34,11 @@ function store_tweet(event) {
 
   // Construction and storage of json
   var tweet_data = {id: id, text: text, date: date, username: username, links: links, lang: lang, abusive: abusive};
-  var tweetObjectStore = db_holder.db.transaction("tweets", "readwrite").objectStore("tweets");
-  tweetObjectStore.put(tweet_data);
+  var objectStore = db_holder.db.transaction("tweets", "readwrite").objectStore("tweets");
+  objectStore.put(tweet_data);
+
+  tweet.setAttribute('tweet-is-negative', !!abusive);
+  // TODO: Add bert_processed to class for tweet_text??
 }
 
 
@@ -62,4 +65,27 @@ function tweet_buttons() {
 
   var $benign = $('.button-benign')
   $benign.click({abusive: 0}, store_tweet);
+}
+
+
+// TODO: Should look at stuff
+function process_tweets() {
+  var objectStore = db_holder.db.transaction("tweets", "readonly").objectStore("tweets");
+  $('.tweet-text').not('.bert_processed').each(function(i, node) {
+      var tweet = node.closest('.tweet');
+      var id = tweet.attributes['data-tweet-id'].value;
+      var req = objectStore.openCursor(id);
+      req.onsuccess = function(e) {
+        var cursor = e.target.result;
+        if (cursor) {
+          tweet.setAttribute('tweet-is-negative', !!cursor.value.abusive);
+        } else {
+          tweet.setAttribute('tweet-is-negative', false);
+        }
+      };
+      req.onerror = function(e) {
+        alert("ERROR");
+      };
+      node.className += ' bert_processed';
+  })
 }
