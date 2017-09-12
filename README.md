@@ -1,4 +1,4 @@
-# twitterbert
+# CrowdShield
 
 A Chrome Extension to filter "crowd harassment" on Twitter. <br />
 (Defined as: Surge of tweets that harmfully target a specific user within a specific time frame) <br />
